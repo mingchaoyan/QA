@@ -160,7 +160,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6359101}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 816022753}
+        m_MethodName: fsmPost
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: OK
+          m_BoolArgument: 0
+        m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &6359101
@@ -212,7 +223,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &41668885
 RectTransform:
   m_ObjectHideFlags: 0
@@ -490,6 +501,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 195733120}
+  - 114: {fileID: 195733121}
   m_Layer: 0
   m_Name: View
   m_TagString: Untagged
@@ -511,6 +523,28 @@ Transform:
   - {fileID: 267891490}
   m_Father: {fileID: 336969455}
   m_RootOrder: 1
+--- !u!114 &195733121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 195733119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ebcd3d17f4d04061a54ac01ab710a1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _questionText: {fileID: 864814269}
+  _aText: {fileID: 623189950}
+  _bText: {fileID: 1556448686}
+  _cText: {fileID: 813725132}
+  _dText: {fileID: 656482870}
+  _resultText: {fileID: 1159561137}
+  _scoreText: {fileID: 1936061657}
+  _begin: {fileID: 41668884}
+  _result: {fileID: 1684569031}
+  _end: {fileID: 0}
+  _play: {fileID: 1793429774}
 --- !u!1 &237201579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1400,6 +1434,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 816022752}
+  - 114: {fileID: 816022753}
   m_Layer: 0
   m_Name: Ctrl
   m_TagString: Untagged
@@ -1420,6 +1455,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 336969455}
   m_RootOrder: 2
+--- !u!114 &816022753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 816022751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b9b5c5561bd4418a0ec477bda63c2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _model: {fileID: 953693834}
+  _view: {fileID: 195733121}
 --- !u!1 &819350915
 GameObject:
   m_ObjectHideFlags: 0
@@ -1648,7 +1696,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05a780122aec24d1389e4e4fa2bede8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _question: []
+  _question:
+  - {fileID: 1713372524}
+  - {fileID: 1253445025}
+  - {fileID: 1936527352}
 --- !u!1 &987208878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1681,8 +1732,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.506454}
   m_AnchorMax: {x: 0.6594033, y: 0.8448998}
-  m_AnchoredPosition: {x: -37.938004, y: 109.50003}
-  m_SizeDelta: {x: 130, y: -219}
+  m_AnchoredPosition: {x: -29.011, y: 85.5}
+  m_SizeDelta: {x: 163.7, y: -154.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &987208880
 MonoBehaviour:
@@ -1705,7 +1756,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 53
+    m_FontSize: 46
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -2022,11 +2073,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f7f9c2e9af94052b0d7d8b09148776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  question: 
-  answer: []
+  question: "\u95EE\u98982"
+  answer:
+  - 0
+  - 1
+  - 2
+  - 3
   correct: 0
-  right: 
-  wrong: 
+  right: right
+  wrong: wrong
 --- !u!1 &1556448684
 GameObject:
   m_ObjectHideFlags: 0
@@ -2304,11 +2359,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f7f9c2e9af94052b0d7d8b09148776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  question: 
-  answer: []
+  question: "\u95EE\u98981"
+  answer:
+  - 0
+  - 1
+  - 2
+  - 3
   correct: 0
-  right: 
-  wrong: 
+  right: right
+  wrong: wrong
 --- !u!1 &1793429774
 GameObject:
   m_ObjectHideFlags: 0
@@ -2325,7 +2384,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1793429775
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2499,7 +2558,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1829904235}
-  - 114: {fileID: 1829904236}
+  - 114: {fileID: 1829904237}
   m_Layer: 0
   m_Name: Offset
   m_TagString: Untagged
@@ -2521,7 +2580,7 @@ Transform:
   - {fileID: 1600625385}
   m_Father: {fileID: 267891490}
   m_RootOrder: 0
---- !u!114 &1829904236
+--- !u!114 &1829904237
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -2529,7 +2588,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1829904234}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8194bf26f21f41c792508c4a76c4dae, type: 3}
+  m_Script: {fileID: 11500000, guid: 591e3950a36eb4fd89fc310383eba6be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _original: {x: 720, y: 1280}
@@ -2649,11 +2708,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f7f9c2e9af94052b0d7d8b09148776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  question: 
-  answer: []
-  correct: 0
-  right: 
-  wrong: 
+  question: "\u95EE\u98983"
+  answer:
+  - 0
+  - 1
+  - 2
+  - 3
+  correct: 4
+  right: right
+  wrong: wrong
 --- !u!1 &2079365116
 GameObject:
   m_ObjectHideFlags: 0
