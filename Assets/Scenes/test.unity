@@ -543,7 +543,7 @@ MonoBehaviour:
   _scoreText: {fileID: 1936061657}
   _begin: {fileID: 41668884}
   _result: {fileID: 1684569031}
-  _end: {fileID: 0}
+  _end: {fileID: 2092561660}
   _play: {fileID: 1793429774}
 --- !u!1 &237201579
 GameObject:
