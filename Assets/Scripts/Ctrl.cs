@@ -6,6 +6,7 @@ public class Ctrl : MonoBehaviour
 {
     public Model _model;
     public View _view;
+	public ArrayList _questions;
     private FSM _fsm = new FSM ();
     private int _score = 0;
     private int _index = 0;
@@ -35,7 +36,7 @@ public class Ctrl : MonoBehaviour
 
     private void result (int select)
     {
-        Question q = _model._question [_index];
+		Question q = _questions[_index] as Question;
         if (select == q.correct) {
             _correct = true;
         } else {
@@ -47,7 +48,7 @@ public class Ctrl : MonoBehaviour
     {
         StateWithEventMap show = new StateWithEventMap ();
         show.onStart += delegate {
-            Question q = _model._question [_index];
+			Question q = _questions [_index] as Question;
             _view._questionText.text = q.question;
             _view._aText.text = q.answer [0];
             _view._bText.text = q.answer [1];
@@ -87,7 +88,7 @@ public class Ctrl : MonoBehaviour
             tween.method = Tween.Method.easeOutBounce;
 				
 				
-            Question q = _model._question [_index];
+			Question q = _questions[_index] as Question;
             if (_correct) {
                 ++_score;
                 _view._resultText.text = q.right;
@@ -104,7 +105,7 @@ public class Ctrl : MonoBehaviour
 			
         result.addAction ("OK", delegate {
             _index++;
-            if (_index >= _model._question.Length) {
+			if (_index >= _questions.Count) {
                 return "over";
             } else {
                 return "show";
@@ -134,6 +135,16 @@ public class Ctrl : MonoBehaviour
         });
         return over;
     }
+	
+	void Awake()
+	{
+		_questions = new Config().questions;
+		foreach(Question q in _questions) 
+		{
+			Debug.Log(q.question);
+		}
+		
+	}
 
     void Start ()
     {
@@ -143,6 +154,4 @@ public class Ctrl : MonoBehaviour
         _fsm.addState ("over", overState ());
         _fsm.init ("begin");
     }
-		
-		
 }
