@@ -82,11 +82,6 @@ public class Ctrl : MonoBehaviour
     {
         StateWithEventMap result = new StateWithEventMap ();
         result.onStart += delegate {
-            _view._result.transform.localScale = Vector3.zero;
-				
-            TweenScale tween = TweenScale.Begin (_view._result.gameObject, 0.3f, Vector3.one);
-            tween.method = Tween.Method.easeOutBounce;
-				
 				
 			Question q = _questions[_index] as Question;
             if (_correct) {
