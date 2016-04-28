@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using GDGeek;
+using Utils;
 
 public class Ctrl : MonoBehaviour
 {
@@ -19,16 +19,16 @@ public class Ctrl : MonoBehaviour
 
     private State beginState ()
     {
-        StateWithEventMap begin = new StateWithEventMap ();
+		State begin = new State ("begin");
         begin.onStart += delegate {
             _index = 0;
             _view._begin.SetActive (true);
         };
-        begin.onOver += delegate {
+        begin.onFinish += delegate {
             _view._begin.SetActive (false);
         };
 			
-        begin.addAction ("OK", delegate {
+		begin.addAction ("event_BeginBtn", delegate {
             return "show";
         });
         return begin;
@@ -46,7 +46,7 @@ public class Ctrl : MonoBehaviour
 
     private State showState ()
     {
-        StateWithEventMap show = new StateWithEventMap ();
+		State show = new State ("show");
         show.onStart += delegate {
 			Question q = _questions [_index] as Question;
             _view._questionText.text = q.question;
@@ -56,19 +56,19 @@ public class Ctrl : MonoBehaviour
             _view._dText.text = q.answer [3];
         };
 			
-        show.addAction ("A", delegate {
+        show.addAction ("event_A", delegate {
             result (0);
             return "result";
         });
-        show.addAction ("B", delegate {
+        show.addAction ("event_B", delegate {
             result (1);
             return "result";
         });
-        show.addAction ("C", delegate {
+        show.addAction ("event_C", delegate {
             result (2);
             return "result";
         });
-        show.addAction ("D", delegate {
+        show.addAction ("event_D", delegate {
             result (3);
             return "result";
         });
@@ -80,7 +80,7 @@ public class Ctrl : MonoBehaviour
 		
     private State resultState ()
     {
-        StateWithEventMap result = new StateWithEventMap ();
+        State result = new State ("result");
         result.onStart += delegate {
 				
 			Question q = _questions[_index] as Question;
@@ -94,14 +94,14 @@ public class Ctrl : MonoBehaviour
                 _view._result.SetActive (true);
             }
         };
-        result.onOver += delegate {
+		result.onFinish += delegate {
             _view._result.SetActive (false);
         };
 			
-        result.addAction ("OK", delegate {
+        result.addAction ("event_OK", delegate {
             _index++;
 			if (_index >= _questions.Count) {
-                return "over";
+                return "end";
             } else {
                 return "show";
             }
@@ -110,25 +110,25 @@ public class Ctrl : MonoBehaviour
         return result;
     }
 
-    private State overState ()
+    private State endState ()
     {
-        StateWithEventMap over = new StateWithEventMap ();
+        State end = new State ("end");
 			
-        over.onStart += delegate {
+        end.onStart += delegate {
             _view._scoreText.text = _score.ToString ();
             _view._end.SetActive (true);
         };
-        over.onOver += delegate {
+        end.onFinish += delegate {
 				
             this._index = 0;
             _score = 0;
             _view._end.SetActive (false);
         };
 			
-        over.addAction ("OK", delegate {
+        end.addAction ("event_RestartBtn", delegate {
             return "begin";
         });
-        return over;
+        return end;
     }
 	
 	void Awake()
@@ -146,7 +146,8 @@ public class Ctrl : MonoBehaviour
         _fsm.addState ("begin", beginState ());
         _fsm.addState ("show", showState ());
         _fsm.addState ("result", resultState ());
-        _fsm.addState ("over", overState ());
+        _fsm.addState ("end", endState ());
+		
         _fsm.init ("begin");
     }
 }
