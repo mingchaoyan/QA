@@ -6,7 +6,7 @@ using Utils;
 public class Ctrl : MonoBehaviour {
 	public Model _model;
 	public View _view;
-	private TimelessQuestion _timelessQuestion;
+	private QA _qa;
 	private Question[] _questions;
     private FSM _fsm = new FSM ();
     private int _score = 0;
@@ -121,11 +121,11 @@ public class Ctrl : MonoBehaviour {
     }
 	
 	void Awake() {
-		_timelessQuestion = Json.Parse<TimelessQuestion>(((TextAsset)Resources.Load("Config/timeless_question")).text);
+		_qa = Json.Parse<QA>(((TextAsset)Resources.Load("Config/qa")).text);
 		Question[] allQuestions = Json.Parse<Question[]>(((TextAsset)Resources.Load("Config/questions")).text);
 		System.Random rand = new System.Random();
-		_questions = new Question[_timelessQuestion.questionLength];
-		for(int i = 0; i<_timelessQuestion.questionLength; ++i)
+		_questions = new Question[_qa.questionLength];
+		for(int i = 0; i<_qa.questionLength; ++i)
 		{
 			int randIndex = rand.Next(0, allQuestions.Length);
 			Debug.Log(allQuestions[randIndex]);
@@ -136,9 +136,9 @@ public class Ctrl : MonoBehaviour {
 		{
 			Debug.Log(q.question);
 		}
-		
-		_view.preface.text = _timelessQuestion.preface;
-		_view.postscript.text = _timelessQuestion.postscript;
+		_view.title.text = _qa.title;	
+		_view.preface.text = _qa.preface;
+		_view.postscript.text = _qa.postscript;
 	}
 
     void Start () {

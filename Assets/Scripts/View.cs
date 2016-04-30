@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class View : MonoBehaviour {
+	public Text title;
 	public Text preface;
 	public Text postscript;
     public Text questionText;

@@ -223,7 +223,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &41668885
 RectTransform:
   m_ObjectHideFlags: 0
@@ -534,6 +534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebcd3d17f4d04061a54ac01ab710a1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  title: {fileID: 987208880}
   preface: {fileID: 2102130232}
   postscript: {fileID: 1058349122}
   questionText: {fileID: 864814269}
@@ -2341,7 +2342,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1793429775
 RectTransform:
   m_ObjectHideFlags: 0
