@@ -1,5 +1,5 @@
 [{ "question":"1. 亡灵鱼人被称作什么？ ", "answers":["A. 鳄鱼人 ", "B. 行尸鱼人 ", "C. 狼獾人 ", "D. 巫妖鱼人 "], "correct":1, "rightInfo":"Right", "wrongInfo":"Wrong"},
-{ "question":"2. 下面哪句话是龙语中“谢谢你”的意思？ ", "answers":["A. ", "Borela mir ", "B. ", "Belan shi ", "C. Avral shi ", "D. Alena mir "], "correct":1, "rightInfo":"Right", "wrongInfo":"Wrong"},
+{ "question":"2. 下面哪句话是龙语中“谢谢你”的意思？ ", "answers":["A. Borela mir ", "B. Belan shi ", "C. Avral shi ", "D. Alena mir "], "correct":1, "rightInfo":"Right", "wrongInfo":"Wrong"},
 { "question":"3.  下面哪一位的墓志铭上刻有“愿血染的王冠永远被遗失和忘却”这句话？ ", "answers":["A. 阿尔萨斯·米奈希尔王子 ", "B. 莱恩·乌瑞恩国王 ", "C. 乌瑟尔·光明使者 ", "D. 泰瑞纳斯·米奈希尔二世国王 "], "correct":3,"rightInfo":"Right", "wrongInfo":"Wrong"},
 { "question":"4. 在撕心狼变成狼人之前，他也曾有过家室。他的妻子叫什么名字？ ", "answers":["A. 艾玛·哈林顿 ", "B. 卡莉莎·哈林顿 ", "C. 薇妮莎·怀特豪尔 ", "D. 卡特里娜·怀特豪尔 "], "correct":1, "rightInfo":"Right", "wrongInfo":"Wrong"},
 { "question":"5. 有一位王后，在大灾变和被遗忘者袭击她的国度时，她井井有条地安排了人民的疏散工作。这位王后叫什么名字？ ", "answers":["A. 莉亚·格雷迈恩王后 ", "B. 玛利亚·格雷迈恩王后 ", "C. 莉莉娅·格雷迈恩王后 ", "D. 米亚·格雷迈恩王后 "], "correct":3,"rightInfo":"Right", "wrongInfo":"Wrong"},
