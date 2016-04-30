@@ -5,6 +5,6 @@ public class QA{
 	public string title;
 	public string preface;
 	public string postscript;
-	public int questionLength;
+	public int usedQuestionLength;
 }
 

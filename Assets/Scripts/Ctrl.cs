@@ -7,7 +7,8 @@ public class Ctrl : MonoBehaviour {
 	public Model _model;
 	public View _view;
 	private QA _qa;
-	private Question[] _questions;
+	private Question[] _usedQuestions;
+	private	Question[] _allQuestions;
     private FSM _fsm = new FSM ();
     private int _score = 0;
     private int _index = 0;
@@ -20,6 +21,19 @@ public class Ctrl : MonoBehaviour {
     private State BeginState () {
 		State begin = new State ("begin");
         begin.onStart += delegate {
+			System.Random rand = new System.Random();
+			_usedQuestions = new Question[_qa.usedQuestionLength];
+			for(int i = 0; i<_qa.usedQuestionLength; ++i)
+			{
+				int randIndex = rand.Next(0, _allQuestions.Length);
+				Debug.Log(_allQuestions[randIndex]);
+				_usedQuestions[i] = _allQuestions[randIndex];
+			}
+			
+			foreach(Question q in _usedQuestions) 
+			{
+				Debug.Log(q.question);
+			}
             _index = 0;
             _view.begin.SetActive (true);
         };
@@ -35,10 +49,9 @@ public class Ctrl : MonoBehaviour {
 
     private State PlayState () {
 		State play = new State ("play");
-		Question q1 = _questions [_index] as Question;
-		
+
         play.onStart += delegate {
-			Question q = _questions [_index] as Question;
+			Question q = _usedQuestions [_index] as Question;
             _view.questionText.text = q.question;
             _view.aText.text = q.answers [0];
             _view.bText.text = q.answers [1];
@@ -52,19 +65,23 @@ public class Ctrl : MonoBehaviour {
 		};
 			
         play.addAction ("event_A", delegate {
-			_correct = (q1.correct == 0);
+			Question q = _usedQuestions [_index] as Question;
+			_correct = (q.correct == 0);
             return "result";
         });
         play.addAction ("event_B", delegate {
-			_correct = (q1.correct == 1);
+			Question q = _usedQuestions [_index] as Question;
+			_correct = (q.correct == 1);
             return "result";
         });
         play.addAction ("event_C", delegate {
-			_correct = (q1.correct == 2);
+			Question q = _usedQuestions [_index] as Question;
+			_correct = (q.correct == 2);
             return "result";
         });
         play.addAction ("event_D", delegate {
-			_correct = (q1.correct == 3);
+			Question q = _usedQuestions [_index] as Question;
+			_correct = (q.correct == 3);
             return "result";
         });
       return play;
@@ -75,7 +92,7 @@ public class Ctrl : MonoBehaviour {
         result.onStart += delegate {
 			_view.play.SetActive(true);
 				
-			Question q = _questions[_index] as Question;
+			Question q = _usedQuestions[_index] as Question;
             if (_correct) {
                 ++_score;
                 _view.resultText.text = q.rightInfo;
@@ -92,7 +109,7 @@ public class Ctrl : MonoBehaviour {
 			
         result.addAction ("event_OK", delegate {
             _index++;
-			if (_index >= _questions.Length) {
+			if (_index >= _usedQuestions.Length) {
                 return "end";
             } else {
                 return "play";
@@ -122,20 +139,8 @@ public class Ctrl : MonoBehaviour {
 	
 	void Awake() {
 		_qa = Json.Parse<QA>(((TextAsset)Resources.Load("Config/qa")).text);
-		Question[] allQuestions = Json.Parse<Question[]>(((TextAsset)Resources.Load("Config/questions")).text);
-		System.Random rand = new System.Random();
-		_questions = new Question[_qa.questionLength];
-		for(int i = 0; i<_qa.questionLength; ++i)
-		{
-			int randIndex = rand.Next(0, allQuestions.Length);
-			Debug.Log(allQuestions[randIndex]);
-			_questions[i] = allQuestions[randIndex];
-		}
-		
-		foreach(Question q in _questions) 
-		{
-			Debug.Log(q.question);
-		}
+		_allQuestions = Json.Parse<Question[]>
+			(((TextAsset)Resources.Load("Config/questions")).text);
 		_view.title.text = _qa.title;	
 		_view.preface.text = _qa.preface;
 		_view.postscript.text = _qa.postscript;
