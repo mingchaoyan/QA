@@ -6,7 +6,7 @@ public class Ctrl : MonoBehaviour
 {
     public Model _model;
     public View _view;
-	public ArrayList _questions;
+	public  Question[] _questions;
     private FSM _fsm = new FSM ();
     private int _score = 0;
     private int _index = 0;
@@ -50,10 +50,10 @@ public class Ctrl : MonoBehaviour
         show.onStart += delegate {
 			Question q = _questions [_index] as Question;
             _view._questionText.text = q.question;
-            _view._aText.text = q.answer [0];
-            _view._bText.text = q.answer [1];
-            _view._cText.text = q.answer [2];
-            _view._dText.text = q.answer [3];
+            _view._aText.text = q.answers [0];
+            _view._bText.text = q.answers [1];
+            _view._cText.text = q.answers [2];
+            _view._dText.text = q.answers [3];
         };
 			
         show.addAction ("event_A", delegate {
@@ -86,11 +86,11 @@ public class Ctrl : MonoBehaviour
 			Question q = _questions[_index] as Question;
             if (_correct) {
                 ++_score;
-                _view._resultText.text = q.right;
+                _view._resultText.text = q.rightInfo;
                 _view._result.SetActive (true);
             } else {
 					
-                _view._resultText.text = q.wrong;
+                _view._resultText.text = q.wrongInfo;
                 _view._result.SetActive (true);
             }
         };
@@ -100,7 +100,7 @@ public class Ctrl : MonoBehaviour
 			
         result.addAction ("event_OK", delegate {
             _index++;
-			if (_index >= _questions.Count) {
+			if (_index >= _questions.Length) {
                 return "end";
             } else {
                 return "show";
@@ -133,7 +133,7 @@ public class Ctrl : MonoBehaviour
 	
 	void Awake()
 	{
-		_questions = new Config().questions;
+		_questions = Json.Parse<Question[]>(((TextAsset)Resources.Load("Config/questions")).text);
 		foreach(Question q in _questions) 
 		{
 			Debug.Log(q.question);
