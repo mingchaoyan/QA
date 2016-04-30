@@ -50,6 +50,11 @@ public class Ctrl : MonoBehaviour
             _view._dText.text = q.answers [3];
 			_view._play.SetActive(true);
         };
+		
+		show.onFinish += delegate
+		{
+			_view._play.SetActive(false);
+		};
 			
         show.addAction ("event_A", delegate {
 			_correct = (q1.correct == 0);
@@ -77,6 +82,7 @@ public class Ctrl : MonoBehaviour
     {
         State result = new State ("result");
         result.onStart += delegate {
+			_view._play.SetActive(true);
 				
 			Question q = _questions[_index] as Question;
             if (_correct) {
@@ -84,13 +90,13 @@ public class Ctrl : MonoBehaviour
                 _view._resultText.text = q.rightInfo;
                 _view._result.SetActive (true);
             } else {
-					
                 _view._resultText.text = q.wrongInfo;
                 _view._result.SetActive (true);
             }
         };
 		result.onFinish += delegate {
             _view._result.SetActive (false);
+			_view._play.SetActive(false);
         };
 			
         result.addAction ("event_OK", delegate {
@@ -128,7 +134,6 @@ public class Ctrl : MonoBehaviour
 	
 	void Awake()
 	{
-		var tmp = ((TextAsset)Resources.Load("Config/timeless_question")).text;
 		timelessQuestion = Json.Parse<TimeLessQuestion>(((TextAsset)Resources.Load("Config/timeless_question")).text);
 		Question[] allQuestions = Json.Parse<Question[]>(((TextAsset)Resources.Load("Config/questions")).text);
 		System.Random rand = new System.Random();
@@ -145,6 +150,8 @@ public class Ctrl : MonoBehaviour
 			Debug.Log(q.question);
 		}
 		
+		_view._preface.text = timelessQuestion.preface;
+		_view._postscript.text = timelessQuestion.postscript;
 	}
 
     void Start ()

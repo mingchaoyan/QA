@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class View : MonoBehaviour
 {
+	public Text _preface;
+	public Text _postscript;
     public Text _questionText;
     public Text _aText;
     public Text _bText;
