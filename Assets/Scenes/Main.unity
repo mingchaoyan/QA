@@ -1725,10 +1725,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children:
-  - {fileID: 1713372523}
-  - {fileID: 1253445024}
-  - {fileID: 1936527351}
+  m_Children: []
   m_Father: {fileID: 336969455}
   m_RootOrder: 0
 --- !u!114 &953693834
@@ -2091,55 +2088,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1159561135}
---- !u!1 &1253445023
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1253445024}
-  - 114: {fileID: 1253445025}
-  m_Layer: 0
-  m_Name: Q2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1253445024
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1253445023}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 953693833}
-  m_RootOrder: 1
---- !u!114 &1253445025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1253445023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84f7f9c2e9af94052b0d7d8b09148776, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  question: "\u95EE\u98982"
-  answer:
-  - 0
-  - 1
-  - 2
-  - 3
-  correct: 0
-  right: right
-  wrong: wrong
 --- !u!1 &1556448684
 GameObject:
   m_ObjectHideFlags: 0
@@ -2377,55 +2325,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1684569031}
---- !u!1 &1713372522
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1713372523}
-  - 114: {fileID: 1713372524}
-  m_Layer: 0
-  m_Name: Q1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1713372523
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1713372522}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 953693833}
-  m_RootOrder: 0
---- !u!114 &1713372524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1713372522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84f7f9c2e9af94052b0d7d8b09148776, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  question: "\u95EE\u98981"
-  answer:
-  - 0
-  - 1
-  - 2
-  - 3
-  correct: 0
-  right: right
-  wrong: wrong
 --- !u!1 &1793429774
 GameObject:
   m_ObjectHideFlags: 0
@@ -2662,55 +2561,6 @@ MonoBehaviour:
   _original: {x: 720, y: 1280}
   _rect: {fileID: 467539789}
   _enable: 0
---- !u!1 &1936527350
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1936527351}
-  - 114: {fileID: 1936527352}
-  m_Layer: 0
-  m_Name: Q3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1936527351
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1936527350}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 953693833}
-  m_RootOrder: 2
---- !u!114 &1936527352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1936527350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84f7f9c2e9af94052b0d7d8b09148776, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  question: "\u95EE\u98983"
-  answer:
-  - 0
-  - 1
-  - 2
-  - 3
-  correct: 4
-  right: right
-  wrong: wrong
 --- !u!1 &2079365116
 GameObject:
   m_ObjectHideFlags: 0
