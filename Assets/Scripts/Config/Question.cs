@@ -8,8 +8,7 @@ public class Question {
 	public string rightInfo;
 	public string wrongInfo;
 
-	public Question (string q, string[] a, int c, string r, string w)
-	{
+	public Question (string q, string[] a, int c, string r, string w) {
 		question = q;
 		answers = a;
 		correct = c;

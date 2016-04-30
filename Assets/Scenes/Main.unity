@@ -162,7 +162,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 816022753}
-        m_MethodName: fsmPost
+        m_MethodName: FsmPost
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -534,19 +534,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebcd3d17f4d04061a54ac01ab710a1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _preface: {fileID: 2102130232}
-  _postscript: {fileID: 1058349122}
-  _questionText: {fileID: 864814269}
-  _aText: {fileID: 623189950}
-  _bText: {fileID: 1556448686}
-  _cText: {fileID: 813725132}
-  _dText: {fileID: 656482870}
-  _resultText: {fileID: 1159561137}
-  _scoreText: {fileID: 1936061657}
-  _begin: {fileID: 41668884}
-  _result: {fileID: 1684569031}
-  _end: {fileID: 2092561660}
-  _play: {fileID: 1793429774}
+  preface: {fileID: 2102130232}
+  postscript: {fileID: 1058349122}
+  questionText: {fileID: 864814269}
+  aText: {fileID: 623189950}
+  bText: {fileID: 1556448686}
+  cText: {fileID: 813725132}
+  dText: {fileID: 656482870}
+  resultText: {fileID: 1159561137}
+  begin: {fileID: 41668884}
+  result: {fileID: 1684569031}
+  end: {fileID: 2092561660}
+  play: {fileID: 1793429774}
 --- !u!1 &237201579
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,7 +623,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 816022753}
-        m_MethodName: fsmPost
+        m_MethodName: FsmPost
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1001,7 +1000,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 816022753}
-        m_MethodName: fsmPost
+        m_MethodName: FsmPost
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1076,6 +1075,7 @@ RectTransform:
   m_Children:
   - {fileID: 41668885}
   - {fileID: 1793429775}
+  - {fileID: 1684569032}
   - {fileID: 2092561661}
   m_Father: {fileID: 1600625385}
   m_RootOrder: 0
@@ -1194,7 +1194,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 816022753}
-        m_MethodName: fsmPost
+        m_MethodName: FsmPost
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1580,7 +1580,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 816022753}
-        m_MethodName: fsmPost
+        m_MethodName: FsmPost
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1739,9 +1739,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 953693832}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05a780122aec24d1389e4e4fa2bede8c, type: 3}
+  m_Script: {fileID: 11500000, guid: 84f7f9c2e9af94052b0d7d8b09148776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  question: 
+  answer: []
+  correct: 0
+  right: 
+  wrong: 
 --- !u!1 &987208878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1893,7 +1898,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 816022753}
-        m_MethodName: fsmPost
+        m_MethodName: FsmPost
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2332,7 +2337,7 @@ RectTransform:
   m_Children:
   - {fileID: 1159561136}
   - {fileID: 394531735}
-  m_Father: {fileID: 1793429775}
+  m_Father: {fileID: 467539789}
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2451,7 +2456,6 @@ RectTransform:
   m_Children:
   - {fileID: 47229630}
   - {fileID: 128663096}
-  - {fileID: 1684569032}
   m_Father: {fileID: 467539789}
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
@@ -2523,7 +2527,7 @@ RectTransform:
   m_Children:
   - {fileID: 110640984}
   m_Father: {fileID: 2092561661}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -167}
@@ -2569,7 +2573,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 816022753}
-        m_MethodName: fsmPost
+        m_MethodName: FsmPost
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2658,80 +2662,6 @@ MonoBehaviour:
   _original: {x: 720, y: 1280}
   _rect: {fileID: 467539789}
   _enable: 0
---- !u!1 &1936061655
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 1936061656}
-  - 222: {fileID: 1936061658}
-  - 114: {fileID: 1936061657}
-  m_Layer: 5
-  m_Name: Score
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1936061656
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1936061655}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 2092561661}
-  m_RootOrder: 1
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 39.5}
-  m_SizeDelta: {x: 163, y: 79}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1936061657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1936061655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 25
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 46
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: "X\u5206"
---- !u!222 &1936061658
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1936061655}
 --- !u!1 &1936527350
 GameObject:
   m_ObjectHideFlags: 0
@@ -2884,10 +2814,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1058349121}
-  - {fileID: 1936061656}
   - {fileID: 1819450228}
   m_Father: {fileID: 467539789}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}

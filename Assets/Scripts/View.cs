@@ -2,21 +2,19 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class View : MonoBehaviour
-{
-	public Text _preface;
-	public Text _postscript;
-    public Text _questionText;
-    public Text _aText;
-    public Text _bText;
-    public Text _cText;
-    public Text _dText;
-    public Text _resultText;
-    public Text _scoreText;
+public class View : MonoBehaviour {
+	public Text preface;
+	public Text postscript;
+    public Text questionText;
+    public Text aText;
+    public Text bText;
+    public Text cText;
+    public Text dText;
+    public Text resultText;
 
-    public GameObject _begin;
-    public GameObject _result;
-    public GameObject _end;
-    public GameObject _play;
+    public GameObject begin;
+    public GameObject result;
+    public GameObject end;
+    public GameObject play;
 
 }
