@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using Utils;
 
@@ -6,6 +7,7 @@ public class Ctrl : MonoBehaviour
 {
     public Model _model;
     public View _view;
+	public TimeLessQuestion timelessQuestion;
 	public  Question[] _questions;
     private FSM _fsm = new FSM ();
     private int _score = 0;
@@ -34,19 +36,11 @@ public class Ctrl : MonoBehaviour
         return begin;
     }
 
-    private void result (int select)
-    {
-		Question q = _questions[_index] as Question;
-        if (select == q.correct) {
-            _correct = true;
-        } else {
-            _correct = false;			
-        }
-    }
-
     private State showState ()
     {
 		State show = new State ("show");
+		Question q1 = _questions [_index] as Question;
+		
         show.onStart += delegate {
 			Question q = _questions [_index] as Question;
             _view._questionText.text = q.question;
@@ -54,22 +48,23 @@ public class Ctrl : MonoBehaviour
             _view._bText.text = q.answers [1];
             _view._cText.text = q.answers [2];
             _view._dText.text = q.answers [3];
+			_view._play.SetActive(true);
         };
 			
         show.addAction ("event_A", delegate {
-            result (0);
+			_correct = (q1.correct == 0);
             return "result";
         });
         show.addAction ("event_B", delegate {
-            result (1);
+			_correct = (q1.correct == 1);
             return "result";
         });
         show.addAction ("event_C", delegate {
-            result (2);
+			_correct = (q1.correct == 2);
             return "result";
         });
         show.addAction ("event_D", delegate {
-            result (3);
+			_correct = (q1.correct == 3);
             return "result";
         });
 			
@@ -133,7 +128,18 @@ public class Ctrl : MonoBehaviour
 	
 	void Awake()
 	{
-		_questions = Json.Parse<Question[]>(((TextAsset)Resources.Load("Config/questions")).text);
+		var tmp = ((TextAsset)Resources.Load("Config/timeless_question")).text;
+		timelessQuestion = Json.Parse<TimeLessQuestion>(((TextAsset)Resources.Load("Config/timeless_question")).text);
+		Question[] allQuestions = Json.Parse<Question[]>(((TextAsset)Resources.Load("Config/questions")).text);
+		System.Random rand = new System.Random();
+		_questions = new Question[timelessQuestion.questionLength];
+		for(int i = 0; i<timelessQuestion.questionLength; ++i)
+		{
+			int randIndex = rand.Next(0, allQuestions.Length);
+			Debug.Log(allQuestions[randIndex]);
+			_questions[i] = allQuestions[randIndex];
+		}
+		
 		foreach(Question q in _questions) 
 		{
 			Debug.Log(q.question);
