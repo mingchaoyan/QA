@@ -13,6 +13,9 @@ public class View : MonoBehaviour {
     public Text dText;
     public Text resultText;
 
+	public Image resultImage;
+	public Text resultBtnText;
+
     public GameObject begin;
     public GameObject result;
     public GameObject end;

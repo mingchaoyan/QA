@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using Utils;
+using UnityEngine.UI;
 
 public class Ctrl : MonoBehaviour {
 	public Model _model;
@@ -97,9 +98,13 @@ public class Ctrl : MonoBehaviour {
                 ++_score;
                 _view.resultText.text = q.rightInfo;
                 _view.result.SetActive (true);
+				_view.resultText.color = Color.green;
+				_view.resultBtnText.color = Color.green;
             } else {
                 _view.resultText.text = q.wrongInfo;
                 _view.result.SetActive (true);
+				_view.resultText.color = Color.red;
+				_view.resultBtnText.color = Color.red;
             }
         };
 		result.onFinish += delegate {
