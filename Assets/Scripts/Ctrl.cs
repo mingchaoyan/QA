@@ -147,7 +147,13 @@ public class Ctrl : MonoBehaviour {
 	}
 
 	IEnumerator LoadConfig(){
-		string url = "file://" +  Application.streamingAssetsPath + "/" + "config";
+		string url = "";
+		if (Application.platform == RuntimePlatform.Android)
+			url = "jar:file://" + Application.dataPath + "!/assets/config";
+		else if (Application.platform == RuntimePlatform.IPhonePlayer)
+			url = "jar:file://" + Application.dataPath + "!/assets/config";
+		else
+			url = "file://" +  Application.streamingAssetsPath + "/config";
 		using(WWW www = new WWW(url)) {
 			yield return www;
 			if (www.error != null)
@@ -174,4 +180,27 @@ public class Ctrl : MonoBehaviour {
 		
         _fsm.init ("begin");
     }
+
+	void Start() {
+		#if UNITY_EDITOR
+		Debug.Log("Unity Editor");
+		#endif
+
+		#if UNITY_ANDROID 
+		Debug.Log("Unity Android");
+		#endif 
+
+		#if UNITY_IPHONE
+		Debug.Log("Iphone");
+		#endif
+
+		#if UNITY_STANDALONE_OSX
+		Debug.Log("Stand Alone OSX");
+		#endif
+
+		#if UNITY_STANDALONE_WIN
+		Debug.Log("Stand Alone Windows");
+		#endif
+
+	}
 }
