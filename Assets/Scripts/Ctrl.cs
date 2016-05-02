@@ -143,15 +143,30 @@ public class Ctrl : MonoBehaviour {
     }
 	
 	void Awake() {
-		_qa = Json.Parse<QA>(((TextAsset)Resources.Load("Config/qa")).text);
-		_allQuestions = Json.Parse<Question[]>
-			(((TextAsset)Resources.Load("Config/questions")).text);
+		StartCoroutine(LoadConfig());
+	}
+
+	IEnumerator LoadConfig(){
+		string url = "file://" +  Application.streamingAssetsPath + "/" + "config";
+		using(WWW www = new WWW(url)) {
+			yield return www;
+			if (www.error != null)
+				throw new Exception("WWW download had an error:" + www.error);
+			if (www.isDone) {
+				AssetBundle ab = www.assetBundle;
+				TextAsset taQa = ab.LoadAsset<TextAsset>("qa.json");
+				_qa = Json.Parse<QA>(taQa.text);
+				TextAsset taAllQuestions = ab.LoadAsset<TextAsset>("questions");
+				_allQuestions = Json.Parse<Question[]> (taAllQuestions.text);
+			}
+		}
+		StartApp();
+	}
+
+    void StartApp () {
 		_view.title.text = _qa.title;	
 		_view.preface.text = _qa.preface;
 		_view.postscript.text = _qa.postscript;
-	}
-
-    void Start () {
         _fsm.addState ("begin", BeginState ());
         _fsm.addState ("play", PlayState ());
         _fsm.addState ("result", ResultState ());
