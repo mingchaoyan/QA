@@ -22,21 +22,8 @@ public class Ctrl : MonoBehaviour {
     private State BeginState () {
 		State begin = new State ("begin");
         begin.onStart += delegate {
-			System.Random rand = new System.Random();
-			_usedQuestions = new Question[_qa.usedQuestionLength];
-			for(int i = 0; i<_qa.usedQuestionLength; ++i)
-			{
-				int randIndex = rand.Next(0, _allQuestions.Length);
-				Debug.Log(_allQuestions[randIndex]);
-				_usedQuestions[i] = _allQuestions[randIndex];
-			}
-			
-			foreach(Question q in _usedQuestions) 
-			{
-				Debug.Log(q.question);
-			}
-            _index = 0;
-            _view.begin.SetActive (true);
+			_view.begin.SetActive (true);
+			StartCoroutine(Begin());
         };
         begin.onFinish += delegate {
             _view.begin.SetActive (false);
@@ -47,6 +34,12 @@ public class Ctrl : MonoBehaviour {
         });
         return begin;
     }
+
+	private IEnumerator Begin() {
+		_view.preface.text = "资源分离中...";
+		yield return StartCoroutine(ResSeperator.SeperatoToSDCard());
+		yield return StartCoroutine(LoadConfig());	
+	}
 
     private State PlayState () {
 		State play = new State ("play");
@@ -143,64 +136,67 @@ public class Ctrl : MonoBehaviour {
     }
 	
 	void Awake() {
-		StartCoroutine(LoadConfig());
+		PlayerPrefs.DeleteAll();
 	}
 
 	IEnumerator LoadConfig(){
-		string url = "";
-		if (Application.platform == RuntimePlatform.Android)
-			url = "jar:file://" + Application.dataPath + "!/assets/config";
-		else if (Application.platform == RuntimePlatform.IPhonePlayer)
-			url = "jar:file://" + Application.dataPath + "!/assets/config";
-		else
-			url = "file://" +  Application.streamingAssetsPath + "/config";
-		using(WWW www = new WWW(url)) {
-			yield return www;
-			if (www.error != null)
-				throw new Exception("WWW download had an error:" + www.error);
-			if (www.isDone) {
-				AssetBundle ab = www.assetBundle;
-				TextAsset taQa = ab.LoadAsset<TextAsset>("qa.json");
-				_qa = Json.Parse<QA>(taQa.text);
-				TextAsset taAllQuestions = ab.LoadAsset<TextAsset>("questions");
-				_allQuestions = Json.Parse<Question[]> (taAllQuestions.text);
+		if (ResSeperator.IsSeperated) {
+			_view.preface.text = "加载配表中...";
+			string url = "";
+			if (Application.platform == RuntimePlatform.Android)
+				//url = "jar:file://" + Application.dataPath + "!/assets/config";
+				url = "jar:file://" + Application.persistentDataPath + "/config";
+			else if (Application.platform == RuntimePlatform.IPhonePlayer)
+				url = "jar:file://" + Application.dataPath + "!/assets/config";
+			else
+				url = "file://" +  Application.streamingAssetsPath + "/config";
+			using(WWW www = new WWW(url)) {
+				yield return www;
+				if (www.error != null)
+					throw new Exception("WWW download had an error:" + www.error);
+				if (www.isDone) {
+					AssetBundle ab = www.assetBundle;
+					TextAsset taQa = ab.LoadAsset<TextAsset>("qa.json");
+					_qa = Json.Parse<QA>(taQa.text);
+					TextAsset taAllQuestions = ab.LoadAsset<TextAsset>("questions");
+					_allQuestions = Json.Parse<Question[]> (taAllQuestions.text);
+				}
 			}
+			yield return new WaitForSeconds(1.0f);
+			HandleConfig();
 		}
-		StartApp();
 	}
 
-    void StartApp () {
+	void HandleConfig() {
+		System.Random rand = new System.Random();
+		_usedQuestions = new Question[_qa.usedQuestionLength];
+		for(int i = 0; i<_qa.usedQuestionLength; ++i)
+		{
+			int randIndex = rand.Next(0, _allQuestions.Length);
+			Debug.Log(_allQuestions[randIndex]);
+			_usedQuestions[i] = _allQuestions[randIndex];
+		}
+		
+		foreach(Question q in _usedQuestions) 
+		{
+			Debug.Log(q.question);
+		}
+        _index = 0;
 		_view.title.text = _qa.title;	
-		_view.preface.text = _qa.preface;
+		_view.preface.text = Application.persistentDataPath;
 		_view.postscript.text = _qa.postscript;
+
+		_view.infoText.text = "";
+		
+	}
+
+	void Start() {
         _fsm.addState ("begin", BeginState ());
         _fsm.addState ("play", PlayState ());
         _fsm.addState ("result", ResultState ());
         _fsm.addState ("end", EndState ());
 		
         _fsm.init ("begin");
-    }
-
-	void Start() {
-		#if UNITY_EDITOR
-		Debug.Log("Unity Editor");
-		#endif
-
-		#if UNITY_ANDROID 
-		Debug.Log("Unity Android");
-		#endif 
-
-		#if UNITY_IPHONE
-		Debug.Log("Iphone");
-		#endif
-
-		#if UNITY_STANDALONE_OSX
-		Debug.Log("Stand Alone OSX");
-		#endif
-
-		#if UNITY_STANDALONE_WIN
-		Debug.Log("Stand Alone Windows");
-		#endif
-
 	}
+
 }

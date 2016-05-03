@@ -6,6 +6,7 @@ public class View : MonoBehaviour {
 	public Text title;
 	public Text preface;
 	public Text postscript;
+	public Text infoText;
     public Text questionText;
     public Text aText;
     public Text bText;
