@@ -27,10 +27,17 @@ public class ResSeperator  {
 			fileList.Add ("config.manifest");
 			fileList.Add ("StreamingAssets");
 			fileList.Add ("StreamingAssets.manifest");
-			string fromPath = Application.streamingAssetsPath;
 			string toPath = Application.persistentDataPath;
 			foreach(string fileName in fileList) {
-				string url =  "file://" + fromPath + "/" + fileName;
+				string url =  "";
+				if (Application.platform == RuntimePlatform.Android) {
+					url = "jar:file://" + Application.dataPath + "!/assets" 
+						+ "/" + fileName;
+				} else if (Application.platform == RuntimePlatform.IPhonePlayer) {
+					url = "jar:file://" + Application.dataPath + "/" + fileName;
+				} else {
+					url = "file://" + Application.streamingAssetsPath + "/" + fileName;
+				}
 				using(WWW www = new WWW(url)) {
 					yield return www;
 					if (www.error != null)

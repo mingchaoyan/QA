@@ -143,13 +143,13 @@ public class Ctrl : MonoBehaviour {
 		if (ResSeperator.IsSeperated) {
 			_view.preface.text = "加载配表中...";
 			string url = "";
-			if (Application.platform == RuntimePlatform.Android)
-				//url = "jar:file://" + Application.dataPath + "!/assets/config";
-				url = "jar:file://" + Application.persistentDataPath + "/config";
-			else if (Application.platform == RuntimePlatform.IPhonePlayer)
+			if (Application.platform == RuntimePlatform.Android) {
+				url = "file://" + Application.persistentDataPath + "/config";
+			} else if (Application.platform == RuntimePlatform.IPhonePlayer) {
 				url = "jar:file://" + Application.dataPath + "!/assets/config";
-			else
+			} else {
 				url = "file://" +  Application.streamingAssetsPath + "/config";
+			}
 			using(WWW www = new WWW(url)) {
 				yield return www;
 				if (www.error != null)
