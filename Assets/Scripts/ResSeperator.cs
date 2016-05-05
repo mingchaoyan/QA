@@ -27,6 +27,8 @@ public class ResSeperator  {
 			fileList.Add ("config.manifest");
 			fileList.Add ("StreamingAssets");
 			fileList.Add ("StreamingAssets.manifest");
+			fileList.Add ("assembly-csharp.manifest");
+			fileList.Add ("assembly-csharp");
 			string toPath = Application.persistentDataPath;
 			foreach(string fileName in fileList) {
 				string url =  "";

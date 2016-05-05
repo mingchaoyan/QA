@@ -183,11 +183,10 @@ public class Ctrl : MonoBehaviour {
 		}
         _index = 0;
 		_view.title.text = _qa.title;	
-		_view.preface.text = Application.persistentDataPath;
+		_view.preface.text = _qa.preface;
 		_view.postscript.text = _qa.postscript;
 
 		_view.infoText.text = "";
-		
 	}
 
 	void Start() {

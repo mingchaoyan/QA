@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3258925337
+CRC: 302705986
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: aa0c58d572a004a900e808461a2ff400
+    Hash: 617823f5d4616f3fb8707595bc362bd3
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1033bf7ddfd4c6d43e7a6382c0a0a61a
@@ -12,6 +12,5 @@ ClassTypes:
 - Class: 49
   Script: {instanceID: 0}
 Assets:
-- Assets/Resources/Config/qa.json
-- Assets/Resources/Config/questions.json
+- Assets/Resources/Assembly-CSharp.bytes
 Dependencies: []
