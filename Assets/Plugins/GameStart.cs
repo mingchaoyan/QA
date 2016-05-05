@@ -2,16 +2,43 @@
 using System.Collections;
 using System;
 using System.Reflection;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameStart : MonoBehaviour {
 	public static Assembly mainAssembly;
+	public Text info;
 
-	// Use this for initialization
-	void Start () {
-		StartCoroutine(LoadMain());
+	void Awake() {
+		Debug.Log(Application.persistentDataPath);
+		Debug.Log(Application.dataPath);
+		Debug.Log(Application.streamingAssetsPath);
+		PlayerPrefs.DeleteAll();
 	}
 
-	IEnumerator LoadMain() {
+	IEnumerator Start () {
+		info.text = "正在分离资源...";
+		yield return StartCoroutine(ResSeperator.SeperatoToSDCard());
+
+		info.text = "正在加载程序...";
+		yield return StartCoroutine(LoadAssembly());
+
+		yield return StartCoroutine(LoadMainScene());
+
+		Type type = mainAssembly.GetType("GameMain");
+		Debug.Log(type);
+		GameObject gamemainGO = GameObject.Find("Game");
+		gamemainGO.AddComponent(type);
+	}
+
+	IEnumerator LoadMainScene() {
+		DontDestroyOnLoad(this);
+		SceneManager.LoadScene("Main");
+		yield return new WaitForSeconds(1.0f);
+		
+	}
+
+	IEnumerator LoadAssembly() {
 		string dllName = "assembly-csharp";
 		string url = "";
 		if (Application.platform == RuntimePlatform.Android) {
@@ -38,8 +65,11 @@ public class GameStart : MonoBehaviour {
 				}
 			}
 		}
+		yield return new WaitForSeconds(1.0f);
 	}
-	
+
+
+
 	// Update is called once per frame
 	void Update () {
 	

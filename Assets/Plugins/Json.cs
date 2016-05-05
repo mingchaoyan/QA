@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace FullSerializer {
 	public partial class fsConverterRegistrar {
-		public static Utils.fsData_DirectConverter Register_fsData_DirectConverter;
+		public static JsonTools.fsData_DirectConverter Register_fsData_DirectConverter;
 	}
 }
 
-namespace Utils {
+namespace JsonTools {
 	public class fsData_DirectConverter : fsDirectConverter {
 		public override Type ModelType { get { return typeof(fsData); } }
 

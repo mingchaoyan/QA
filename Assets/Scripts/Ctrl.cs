@@ -7,9 +7,7 @@ using UnityEngine.UI;
 public class Ctrl : MonoBehaviour {
 	public Model _model;
 	public View _view;
-	private QA _qa;
 	private Question[] _usedQuestions;
-	private	Question[] _allQuestions;
     private FSM _fsm = new FSM ();
     private int _score = 0;
     private int _index = 0;
@@ -23,7 +21,6 @@ public class Ctrl : MonoBehaviour {
 		State begin = new State ("begin");
         begin.onStart += delegate {
 			_view.begin.SetActive (true);
-			StartCoroutine(Begin());
         };
         begin.onFinish += delegate {
             _view.begin.SetActive (false);
@@ -35,11 +32,7 @@ public class Ctrl : MonoBehaviour {
         return begin;
     }
 
-	private IEnumerator Begin() {
-		_view.preface.text = "资源分离中...";
-		yield return StartCoroutine(ResSeperator.SeperatoToSDCard());
-		yield return StartCoroutine(LoadConfig());	
-	}
+
 
     private State PlayState () {
 		State play = new State ("play");
@@ -134,47 +127,15 @@ public class Ctrl : MonoBehaviour {
         });
         return end;
     }
-	
-	void Awake() {
-		PlayerPrefs.DeleteAll();
-	}
-
-	IEnumerator LoadConfig(){
-		if (ResSeperator.IsSeperated) {
-			_view.preface.text = "加载配表中...";
-			string url = "";
-			if (Application.platform == RuntimePlatform.Android) {
-				url = "file://" + Application.persistentDataPath + "/config";
-			} else if (Application.platform == RuntimePlatform.IPhonePlayer) {
-				url = "jar:file://" + Application.dataPath + "!/assets/config";
-			} else {
-				url = "file://" +  Application.streamingAssetsPath + "/config";
-			}
-			using(WWW www = new WWW(url)) {
-				yield return www;
-				if (www.error != null)
-					throw new Exception("WWW download had an error:" + www.error);
-				if (www.isDone) {
-					AssetBundle ab = www.assetBundle;
-					TextAsset taQa = ab.LoadAsset<TextAsset>("qa.json");
-					_qa = Json.Parse<QA>(taQa.text);
-					TextAsset taAllQuestions = ab.LoadAsset<TextAsset>("questions");
-					_allQuestions = Json.Parse<Question[]> (taAllQuestions.text);
-				}
-			}
-			yield return new WaitForSeconds(1.0f);
-			HandleConfig();
-		}
-	}
 
 	void HandleConfig() {
 		System.Random rand = new System.Random();
-		_usedQuestions = new Question[_qa.usedQuestionLength];
-		for(int i = 0; i<_qa.usedQuestionLength; ++i)
+		_usedQuestions = new Question[GameMain.qa.usedQuestionLength];
+		for(int i = 0; i<GameMain.qa.usedQuestionLength; ++i)
 		{
-			int randIndex = rand.Next(0, _allQuestions.Length);
-			Debug.Log(_allQuestions[randIndex]);
-			_usedQuestions[i] = _allQuestions[randIndex];
+			int randIndex = rand.Next(0, GameMain.allQuestions.Length);
+			Debug.Log(GameMain.allQuestions[randIndex]);
+			_usedQuestions[i] = GameMain.allQuestions[randIndex];
 		}
 		
 		foreach(Question q in _usedQuestions) 
@@ -182,11 +143,19 @@ public class Ctrl : MonoBehaviour {
 			Debug.Log(q.question);
 		}
         _index = 0;
-		_view.title.text = _qa.title;	
-		_view.preface.text = _qa.preface;
-		_view.postscript.text = _qa.postscript;
+		_view.title.text = GameMain.qa.title;	
+		_view.preface.text = GameMain.qa.preface;
+		_view.postscript.text = GameMain.qa.postscript;
 
-		_view.infoText.text = "";
+	}
+
+	void Awake() {
+		GameObject modelGO = GameObject.Find("Game/Model");
+		GameObject viewGO = GameObject.Find("Game/View");
+		modelGO.AddComponent<Model>();
+		viewGO.AddComponent<View>();
+		_model = modelGO.GetComponent<Model>();
+		_view =  viewGO.GetComponent<View>();
 	}
 
 	void Start() {
@@ -197,5 +166,4 @@ public class Ctrl : MonoBehaviour {
 		
         _fsm.init ("begin");
 	}
-
 }
