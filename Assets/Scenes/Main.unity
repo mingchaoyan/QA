@@ -1054,7 +1054,7 @@ RectTransform:
   - {fileID: 1684569032}
   - {fileID: 2092561661}
   m_Father: {fileID: 1600625385}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1282,7 +1282,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u7B54\u6848A"
+  m_Text: 
 --- !u!222 &623189951
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1356,7 +1356,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u7B54\u6848D"
+  m_Text: 
 --- !u!222 &656482871
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1430,7 +1430,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u7B54\u6848C"
+  m_Text: 
 --- !u!222 &813725133
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1654,7 +1654,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\u6211\u662F\u95EE\u9898"
+  m_Text: 
 --- !u!222 &864814270
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1915,11 +1915,11 @@ RectTransform:
   m_Children:
   - {fileID: 1985085672}
   m_Father: {fileID: 1600625385}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00002849102, y: 0}
-  m_SizeDelta: {x: 0.000056743622, y: 0}
+  m_AnchoredPosition: {x: 0.00000072095645, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1054706281
 MonoBehaviour:
@@ -2021,7 +2021,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\u8FD9\u662F\u5386\u53F2\u5B66\u5BB6\u80A9\u4E0A\u7684\u91CD\u62C5\u4E07\u4E00\u827E\u6CFD\u62C9\u65AF\u7684\u65F6\u95F4\u6D41\u906D\u5230\u653B\u51FB\uFF0C\u6211\u4EEC\u5FC5\u987B\u5206\u6BEB\u4E0D\u5DEE\u5730\u91CD\u5851\u5386\u53F2\uFF0C\u5426\u5219\u4FBF\u6709\u53EF\u80FD\u5BFC\u81F4\u53EF\u6015\u7684\u540E\u679C\uFF0C\u5728\u6563\u64AD\u4F20\u8BF4\u4E0E\u77E5\u8BC6\u7684\u540C\u65F6\uFF0C\u6211\u4EEC\u4E5F\u8981\u4E3A\u6211\u4EEC\u6240\u6709\u4EBA\u521B\u9020\u4E00\u4E2A\u66F4\u52A0\u5F3A\u5927\u7684\u672A\u6765\u3002"
+  m_Text: 
 --- !u!222 &1058349123
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2095,7 +2095,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u7B54\u5BF9\u4E86\uFF01"
+  m_Text: 
 --- !u!222 &1159561138
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2169,7 +2169,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u7B54\u6848B"
+  m_Text: 
 --- !u!222 &1556448687
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2205,8 +2205,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1054706280}
   - {fileID: 467539789}
+  - {fileID: 1054706280}
   m_Father: {fileID: 267891490}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
@@ -2581,7 +2581,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: asdf
+  m_Text: "\u6B63\u5728\u52A0\u8F7D\u914D\u8868..."
 --- !u!222 &1985085671
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2817,7 +2817,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: asdf
+  m_Text: 
 --- !u!222 &2102130233
 CanvasRenderer:
   m_ObjectHideFlags: 0

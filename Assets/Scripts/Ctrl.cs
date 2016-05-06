@@ -19,8 +19,17 @@ public class Ctrl : MonoBehaviour {
 
     private State BeginState () {
 		State begin = new State ("begin");
+		Button btn = _view.begin.GetComponentInChildren<Button>();
+		btn.onClick.AddListener(delegate () {
+			FsmPost("event_BeginBtn");	
+		});
         begin.onStart += delegate {
+			HandleConfig();
 			_view.begin.SetActive (true);
+			_view.play.SetActive(false);
+			_view.result.SetActive(false);
+			_view.end.SetActive(false);
+				
         };
         begin.onFinish += delegate {
             _view.begin.SetActive (false);
@@ -36,6 +45,19 @@ public class Ctrl : MonoBehaviour {
 
     private State PlayState () {
 		State play = new State ("play");
+		string root = "Game/View/Camera/Canvas/Main/Play/Answer/";
+		GameObject.Find(root + "A").GetComponent<Button>().onClick.AddListener(delegate {
+			FsmPost("event_A");
+		});
+		GameObject.Find(root + "B").GetComponent<Button>().onClick.AddListener(delegate {
+			FsmPost("event_B");
+		});
+		GameObject.Find(root + "C").GetComponent<Button>().onClick.AddListener(delegate {
+			FsmPost("event_C");
+		});
+		GameObject.Find(root + "D").GetComponent<Button>().onClick.AddListener(delegate {
+			FsmPost("event_D");
+		});
 
         play.onStart += delegate {
 			Question q = _usedQuestions [_index] as Question;
@@ -45,6 +67,9 @@ public class Ctrl : MonoBehaviour {
             _view.cText.text = q.answers [2];
             _view.dText.text = q.answers [3];
 			_view.play.SetActive(true);
+			_view.begin.SetActive(false);
+			_view.end.SetActive(false);
+			_view.result.SetActive(false);
         };
 		
 		play.onFinish += delegate {
@@ -76,6 +101,10 @@ public class Ctrl : MonoBehaviour {
 
     private State ResultState () {
         State result = new State ("result");
+		Button btn = _view.result.GetComponentInChildren<Button>();
+		btn.onClick.AddListener(delegate {
+			FsmPost("event_OK");
+		});
         result.onStart += delegate {
 			_view.play.SetActive(true);
 				
@@ -112,6 +141,10 @@ public class Ctrl : MonoBehaviour {
 
     private State EndState () {
         State end = new State ("end");
+		Button btn = _view.end.GetComponentInChildren<Button>();
+		btn.onClick.AddListener(delegate {
+			FsmPost("event_RestartBtn");
+		});
 			
         end.onStart += delegate {
             _view.end.SetActive (true);

@@ -19,7 +19,6 @@ public class GameMain : MonoBehaviour {
 
 	// Use this for initialization
 	IEnumerator Start () {
-		info.text = "正在加载配表...";
 		yield return StartCoroutine(LoadConfig());		
 		loadPanelGO.SetActive(false);
 		mainPanelGO.SetActive(true);

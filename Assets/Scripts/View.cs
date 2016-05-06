@@ -33,6 +33,9 @@ public class View : MonoBehaviour {
 		dText = GameObject.Find(root +"Play/Answer/D/Text").GetComponent<Text>();
 		resultText = GameObject.Find(root + "Result/Text").GetComponent<Text>();
 
+		resultImage = GameObject.Find(root + "Result/Button").GetComponent<Image>();
+		resultBtnText = GameObject.Find(root + "Result/Button/Text").GetComponent<Text>();
+
 		begin = GameObject.Find("Main/Begin");
 		play = GameObject.Find("Main/Play");
 		result = GameObject.Find("Main/Result");
