@@ -113,17 +113,17 @@ public class Ctrl : MonoBehaviour {
                 ++_score;
                 _view.resultText.text = q.rightInfo;
                 _view.result.SetActive (true);
-				//_view.resultText.color = Color.green;
-				//_view.resultBtnText.color = Color.green;
-				_view.resultText.color = Color.yellow;
-				_view.resultBtnText.color = Color.yellow;
+				_view.resultText.color = Color.green;
+				_view.resultBtnText.color = Color.green;
+				//_view.resultText.color = Color.yellow;
+				//_view.resultBtnText.color = Color.yellow;
             } else {
                 _view.resultText.text = q.wrongInfo;
                 _view.result.SetActive (true);
-//				_view.resultText.color = Color.red;
-//				_view.resultBtnText.color = Color.red;
-				_view.resultText.color = Color.yellow;
-				_view.resultBtnText.color = Color.yellow;
+				_view.resultText.color = Color.red;
+				_view.resultBtnText.color = Color.red;
+				//_view.resultText.color = Color.yellow;
+				//_view.resultBtnText.color = Color.yellow;
             }
         };
 		result.onFinish += delegate {
