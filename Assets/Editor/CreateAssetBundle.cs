@@ -1,9 +1,9 @@
 ﻿using UnityEditor;
 
-public class CreateAssetBundles
+public static class CreateAssetBundles
 {
 	[MenuItem("Assets/Build AssetBundles")]
-	static void BuildAllAssetBundles()
+	public static void BuildAllAssetBundles()
 	{
 		BuildPipeline.BuildAssetBundles("Assets/StreamingAssets", BuildAssetBundleOptions.None, BuildTarget.Android);
 	}
