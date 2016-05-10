@@ -24,8 +24,8 @@ public static class AutoBuilder {
 
 	[MenuItem("File/AutoBuilder/Android")]
 	static void PerformAndroidBuild() {
-		打ab
-		//CreateAssetBundles.BuildAllAssetBundles();
+		//打ab
+		CreateAssetBundles.BuildAllAssetBundles();
 		//打apk
 		EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTarget.Android);
 		BuildPipeline.BuildPlayer(GetScenePaths(), "Build/" + GetProjectName() + ".apk", BuildTarget.Android, AutoBuildOption );
