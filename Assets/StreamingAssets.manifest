@@ -1,9 +1,0 @@
-ManifestFileVersion: 0
-AssetBundleManifest:
-  AssetBundleInfos:
-    Info_0:
-      Name: config
-      Dependencies: {}
-    Info_1:
-      Name: assembly-csharp
-      Dependencies: {}
