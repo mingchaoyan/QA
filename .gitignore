@@ -26,3 +26,7 @@ ExportedObj/
 sysinfo.txt
 
 *.apk
+*.log
+Assets/Resources/Assembly-CSharp.bytes
+Assets/Resources/Assembly-CSharp.bytes.meta
+Assets/StreamingAssets/
