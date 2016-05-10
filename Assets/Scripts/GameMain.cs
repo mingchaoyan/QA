@@ -3,6 +3,8 @@ using System.Collections;
 using System;
 using JsonTools;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using FullSerializer;
 
 public class GameMain : MonoBehaviour {
 	public static QA qa;

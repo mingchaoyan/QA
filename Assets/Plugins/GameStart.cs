@@ -4,8 +4,14 @@ using System;
 using System.Reflection;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using FullSerializer;
+using System.Collections.Generic;
+using JsonTools;
+using Zi;
 
 public class GameStart : MonoBehaviour {
+	public static Dictionary<string, fsData> appConfig;
+
 	public static Assembly mainAssembly;
 	public Text info;
 
@@ -18,9 +24,19 @@ public class GameStart : MonoBehaviour {
 
 	IEnumerator Start () {
 		info.text = "正在分离资源...";
+		info.text += "\n持久化路径为:" + Application.persistentDataPath;
 		yield return StartCoroutine(ResSeperator.SeperatoToSDCard());
 
-		info.text = "正在加载程序...";
+		info.text = "正在加载应用配置...";
+		yield return StartCoroutine(LoadAppConfig());
+
+		info.text = "正在检查版本更新...";
+		yield return StartCoroutine(CheckUpdate());
+
+		info.text = "正在下载更新文件...";
+		yield return StartCoroutine(DownloadFiles());
+
+		info.text = "正在加载程序集...";
 		yield return StartCoroutine(LoadAssembly());
 
 		yield return StartCoroutine(LoadMainScene());
@@ -29,6 +45,22 @@ public class GameStart : MonoBehaviour {
 		Debug.Log(type);
 		GameObject gamemainGO = GameObject.Find("Game");
 		gamemainGO.AddComponent(type);
+	}
+
+	IEnumerator LoadAppConfig() {
+		appConfig = Json.Parse(((TextAsset)Resources.Load("Config/app.json")).text).AsDictionary;
+		string clientVersion = JsonHelpers.GetString(appConfig, "clientVersion", "");
+		info.text += "\nclientVersion: " + clientVersion;
+		yield return new WaitForSeconds(1.0f);
+		
+	}
+
+	IEnumerator CheckUpdate() {
+		yield return null;
+	}
+
+	IEnumerator DownloadFiles() {
+		yield return null;
 	}
 
 	IEnumerator LoadMainScene() {
