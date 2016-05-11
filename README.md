@@ -15,3 +15,9 @@ rm -rf Build
 mkdir Build
 Unity -logFile "$WORKSPACE/unity3d_editor.log"  -executeMethod AutoBuilder.PerformAndroidBuild -quit -batchmode 
 ```
+
+## HotFix
+1. 重打资源
+2. 使用publisher工具上传差异到center服务器
+3. 在OSS上新建版本目录，上传新资源
+4. 在gm管理工具上更改资源版本号

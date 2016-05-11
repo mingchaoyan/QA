@@ -29,6 +29,7 @@ public class GameMain : MonoBehaviour {
 	}
 
 	IEnumerator LoadConfig(){
+		info.text = "正在加载配表...";
 		if (GameResSeperate.IsSeperated) {
 			string url = "";
 			if (Application.platform == RuntimePlatform.Android) {
@@ -38,6 +39,7 @@ public class GameMain : MonoBehaviour {
 			} else {
 				url = "file://" +  Application.persistentDataPath + "/config";
 			}
+			info.text += "\n加载路径：" + url;
 			using(WWW www = new WWW(url)) {
 				yield return www;
 				if (www.error != null)
@@ -50,7 +52,7 @@ public class GameMain : MonoBehaviour {
 					allQuestions = Json.Parse<Question[]> (taAllQuestions.text);
 				}
 			}
-			yield return new WaitForSeconds(1.0f);
+			yield return new WaitForSeconds(5.0f);
 		}
 	}
 	
