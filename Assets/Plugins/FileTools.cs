@@ -24,6 +24,17 @@ public class FileTools {
 		}
 	}
 
+	public static bool CreateFileForce(string filePath, byte[] buffer) {
+		try {
+			if(File.Exists(filePath)) {
+				File.Delete(filePath);
+			}
+		} catch (Exception ex) {
+			Debug.LogError(ex.ToString());
+		}
+		return CreateFile(filePath, buffer);
+	}
+
 	public static bool CreateFile(string filePath, byte[] buffer) {
 		bool success = false;
 		try {

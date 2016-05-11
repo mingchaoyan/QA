@@ -61,12 +61,12 @@ public class GameStart : MonoBehaviour {
 
 	IEnumerator CheckUpdate() {
 		StartCoroutine(GameUpdate.CheckUpdate());
-		yield return new WaitForSeconds(5.0f);
+		yield return new WaitForSeconds(1.0f);
 	}
 
 	IEnumerator DownloadFiles() {
 		StartCoroutine(GameDownload.DownloadFiles());
-		yield return new WaitForSeconds(1.0f);
+		yield return new WaitForSeconds(5.0f);
 	}
 
 	IEnumerator LoadMainScene() {
