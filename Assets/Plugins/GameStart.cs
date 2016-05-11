@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using FullSerializer;
 using System.Collections.Generic;
+using System.Net;
 using JsonTools;
 using Zi;
 
@@ -13,19 +14,20 @@ public class GameStart : MonoBehaviour {
 	public static Dictionary<string, fsData> appConfig;
 
 	public static Assembly mainAssembly;
-	public Text info;
+	public static Text info;
+
 
 	void Awake() {
 		Debug.Log(Application.persistentDataPath);
 		Debug.Log(Application.dataPath);
 		Debug.Log(Application.streamingAssetsPath);
 		PlayerPrefs.DeleteAll();
+		info = GameObject.Find("Canvas/Panel/Text").GetComponent<Text>();
 	}
 
 	IEnumerator Start () {
 		info.text = "正在分离资源...";
-		info.text += "\n持久化路径为:" + Application.persistentDataPath;
-		yield return StartCoroutine(ResSeperator.SeperatoToSDCard());
+		yield return StartCoroutine(SeperatoToSDCard());
 
 		info.text = "正在加载应用配置...";
 		yield return StartCoroutine(LoadAppConfig());
@@ -47,20 +49,24 @@ public class GameStart : MonoBehaviour {
 		gamemainGO.AddComponent(type);
 	}
 
+	IEnumerator SeperatoToSDCard() {
+		StartCoroutine(GameResSeperate.SeperatoToSDCard());
+		yield return new WaitForSeconds(1.0f);
+	}
+
 	IEnumerator LoadAppConfig() {
 		appConfig = Json.Parse(((TextAsset)Resources.Load("Config/app.json")).text).AsDictionary;
-		string clientVersion = JsonHelpers.GetString(appConfig, "clientVersion", "");
-		info.text += "\nclientVersion: " + clientVersion;
-		yield return new WaitForSeconds(1.0f);
-		
+		yield return new WaitForSeconds(1.0f);	
 	}
 
 	IEnumerator CheckUpdate() {
-		yield return null;
+		StartCoroutine(GameUpdate.CheckUpdate());
+		yield return new WaitForSeconds(5.0f);
 	}
 
 	IEnumerator DownloadFiles() {
-		yield return null;
+		StartCoroutine(GameDownload.DownloadFiles());
+		yield return new WaitForSeconds(1.0f);
 	}
 
 	IEnumerator LoadMainScene() {

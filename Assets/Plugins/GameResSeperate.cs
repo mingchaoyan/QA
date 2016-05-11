@@ -3,7 +3,9 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 
-public class ResSeperator  {
+using UnityEngine.UI;
+
+public class GameResSeperate  {
 	public static bool IsSeperated {
 		get {
 			//if(Application.platform == RuntimePlatform.OSXEditor)
@@ -21,6 +23,8 @@ public class ResSeperator  {
 	}
 
 	public static IEnumerator SeperatoToSDCard() {
+		Text info = GameStart.info;
+		info.text += "\n持久化路径为:" + Application.persistentDataPath;
 		if (!IsSeperated) {
 			ArrayList fileList = new ArrayList();
 			fileList.Add ("config");
@@ -49,7 +53,6 @@ public class ResSeperator  {
 					}	
 				}
 			}
-			yield return new WaitForSeconds(1.0f);
 			IsSeperated = true;
 		}
 

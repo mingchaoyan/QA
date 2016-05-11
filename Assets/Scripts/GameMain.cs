@@ -29,7 +29,7 @@ public class GameMain : MonoBehaviour {
 	}
 
 	IEnumerator LoadConfig(){
-		if (ResSeperator.IsSeperated) {
+		if (GameResSeperate.IsSeperated) {
 			string url = "";
 			if (Application.platform == RuntimePlatform.Android) {
 				url = "file://" + Application.persistentDataPath + "/config";
