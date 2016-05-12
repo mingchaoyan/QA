@@ -1,5 +1,5 @@
 {
-  "clientVersion":"0.0.0.29",
+  "clientVersion":"0.0.0.35",
   "centerAddress":"http://center-aliyun.3pjgames.com/api/client/v2",
   "apiKey":"8ae4e4785edbf5b5695dc71847e6ed5216",
   "downloadUrl":"http://testdll.oss-cn-hangzhou.aliyuncs.com/"
