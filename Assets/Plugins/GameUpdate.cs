@@ -14,6 +14,10 @@ public class GameUpdate {
 		public int Patch;
 		public int Release;
 
+		public ClientVersion() {
+			
+		}
+
 		public ClientVersion(string clientVersion) {
 			if (!string.IsNullOrEmpty(clientVersion)) {
 				var strs = clientVersion.Split('.');
@@ -36,6 +40,7 @@ public class GameUpdate {
 		}
 	}
 	public static ClientVersion clientVersion;
+	public static ClientVersion latestClientVersion;
 	public class FileInfo {
 		public string name;
 		public int size;
@@ -84,16 +89,16 @@ public class GameUpdate {
 
 		var updateInfo = Json.Parse(response);
 		var updateInfoDic = updateInfo.AsDictionary;
-		var clientVersion = updateInfoDic["latest_version"].AsDictionary;
-		var major = (int) clientVersion["major"].AsInt64;
-		var minor = (int) clientVersion["minor"].AsInt64;
-		var patch = (int) clientVersion["patch"].AsInt64;
-		var release = (int) clientVersion["release"].AsInt64;
-		//info.text += "\n+++++++++++++++++++++++++";
-		info.text += "\n-Major: " + major;
-		info.text += "\n-Minor: " + minor;
-		info.text += "\n-Patch: " + patch;
-		info.text += "\n-Release: " + release;
+		var latestClientVersionVal = updateInfoDic["latest_version"].AsDictionary;
+		latestClientVersion = new ClientVersion();
+		latestClientVersion.Major = (int) latestClientVersionVal["major"].AsInt64;
+		latestClientVersion.Minor = (int) latestClientVersionVal["minor"].AsInt64;
+		latestClientVersion.Patch = (int) latestClientVersionVal["patch"].AsInt64;
+		latestClientVersion.Release = (int) latestClientVersionVal["release"].AsInt64;
+		info.text += "\n-Major: " + latestClientVersion.Major;
+		info.text += "\n-Minor: " + latestClientVersion.Minor;
+		info.text += "\n-Patch: " + latestClientVersion.Patch;
+		info.text += "\n-Release: " + latestClientVersion.Release;
 		var updateList = updateInfoDic.ContainsKey("update_list") 
 			? updateInfoDic["update_list"].AsList
 			: new List<fsData>();
