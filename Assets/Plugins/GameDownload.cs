@@ -14,7 +14,7 @@ public class GameDownload {
 		string toPath = Application.persistentDataPath;
 		foreach(var file in GameUpdate.files) {
 			//var url = downloadUrl + releaseVersion + "/" + file.name;
-			var url = downloadUrl + "1"+ "/" + file.name;
+			var url = downloadUrl + releaseVersion + "/" + file.name;
 			info.text += "\n" + url;
 			Debug.Log(url);
 			using(WWW www = new WWW(url)) {
