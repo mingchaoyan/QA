@@ -5,7 +5,17 @@ using Zi;
 using UnityEngine.UI;
 
 public class GameDownload {
-	public static IEnumerator DownloadFiles() {
+	private static GameDownload _instance;
+	public static GameDownload instance {
+		get {
+			if(_instance == null) {
+				_instance = new GameDownload();
+			}
+			return _instance;
+		}
+	}
+
+	public IEnumerator DownloadFiles() {
 		Text info = GameStart.info;
 		var totalBytes = GetContentBytes();
 		var downloadedBytes = 0;

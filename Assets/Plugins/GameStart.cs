@@ -65,7 +65,7 @@ public class GameStart : MonoBehaviour {
 	}
 
 	IEnumerator DownloadFiles() {
-		StartCoroutine(GameDownload.DownloadFiles());
+		StartCoroutine(GameDownload.instance.DownloadFiles());
 		yield return new WaitForSeconds(5.0f);
 	}
 
