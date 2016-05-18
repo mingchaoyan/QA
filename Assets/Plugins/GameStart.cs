@@ -77,6 +77,7 @@ public class GameStart : MonoBehaviour {
 	}
 
 	IEnumerator LoadAssembly() {
+		
 		string dllName = "assembly-csharp";
 		string url = "";
 		if (Application.platform == RuntimePlatform.Android) {
